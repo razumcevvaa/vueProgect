@@ -5,7 +5,6 @@
       <div style="font-size: 18px; height:20px; text-align: left;">{{ calcCurrentStr }}</div>
     </div>
     <div class="calk">
-
       <div>
         <div style="display:flex">
         <button>1</button>
@@ -122,5 +121,7 @@ onBeforeUnmount(() => {
 }
 .calk button{
   width: 45px;
+  margin: 3px;
+  text-align: center;
 }
 </style>
