@@ -3,14 +3,15 @@
     <form @submit.prevent="add">
       <input v-model="message" type="text" placeholder="ToDo">
     </form>
+    <input v-model="text" type="text" placeholder="find">
     <select id="todo" v-model="select">
       <option value="All">Все</option>
-      <option value="Completed">done</option>
-      <option value="Cancelled">Отмененные</option>
-      <option value="Deleted">Удаленные</option>
+      <option value="1">done</option>
+      <option value="2">Отмененные</option>
+      <option value="3">Удаленные</option>
     </select>
     <ul>
-      <li :data-check="el.check" v-for="el of arr" :key="el.id">{{ el.text }}
+      <li :data-check="el.check" v-for="el of compArr" :key="el.id">{{ el.text }}
         <span v-if="el.check == 0">
           <button @click="check(el.id, 1)">done</button>
           <button @click="check(el.id, 2)">cancel</button>
@@ -27,6 +28,7 @@ import { computed, ref } from 'vue'
 
 const select = ref('All')
 const message = ref('')
+const text = ref('')
 const localArr = localStorage.arr ? JSON.parse(localStorage.arr) : []
 const arr = ref(localArr as any[])
 
@@ -39,7 +41,8 @@ const add = () => {
 }
 
 const clean = () => {
-  localStorage.clear()
+  arr.value = []
+  delete localStorage.arr
   //и сделать автомат перезагрузку
 }
 
@@ -49,14 +52,19 @@ const check = (id: number, check: number) => {
   localStorage.arr = JSON.stringify(arr.value)
 }
 
-const choice = computed(() => {
+const compArr = computed(() => {
   if (select.value == 'All') {
-    return select.value
+    if (text.value) {
+      return arr.value.filter((el) => el.text.includes(text.value))
+    }
+    return arr.value
   } else {
-    arr.value.filter((el) => el.text.startsWith(select.value))
+    if (text.value) {
+      return arr.value.filter((el) => el.text.includes(text.value) && el.check==parseInt(select.value))
+    }
+    return arr.value.filter((el) => el.check==parseInt(select.value))
   }
 })
-console.log(choice)
 </script>
 
 
