@@ -6,7 +6,7 @@
         <select name="group" v-model="groupSt">
           <option v-for="el of groups" :value="el" :key="el">{{ el }}</option>
         </select>
-  
+
         <div class="journal2">Lesson:</div>
         <select name="Lesson" text="text1" v-model="lessonSt">
           <option v-for="el of lessons" :value="el" :key="el">{{ el }}</option>
@@ -24,7 +24,10 @@
       <div><span>Name</span><span>Is present</span></div>
       <hr>
       <template v-for="el of currentGroup" :key="el.id">
-        <div>{{ el.name }}
+        <div class="checkbox">
+          <p style="width: 300px;">
+            {{ el.name }}
+          </p>
           <label>
             <input type="checkbox" :disabled="currentState" v-model="el.checked" text="present">
           </label>
@@ -134,22 +137,35 @@ const saveInfo = () => {
 }
 </script>
 <style>
-.box-for-jour{
+*{
+  margin: 0;
+  padding: 0;
+}
+.box-for-jour {
   display: flex;
   width: 500px;
 }
-.poisk{
+
+.poisk {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
+
 .journal1 {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 10px;
 }
-.save-b{
+
+.save-b {
   margin-left: 60px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
 }
 </style>
