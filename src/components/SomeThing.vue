@@ -1,6 +1,5 @@
 <template>
   <h1>{{ text }}</h1>
-  <button @click="reverse()">reverse</button>
 
   <p>{{ message }}</p>
   <input v-model="message" type="text">
@@ -14,9 +13,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const text = ref('Learne vue please')
-const reverse = () => {
-  text.split('').reverse().join('')
-}
 
 const message = ref('здесь будет ваш текст')
 
