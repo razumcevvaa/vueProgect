@@ -5,6 +5,7 @@
   <StudentGroup/>
   <SomeThing/>
   <TabWindow/>
+  <MyTest/>
 </template>
 
 <script setup lang="ts">
@@ -14,6 +15,7 @@ import HeaderComp from './components/HeaderComp.vue'
 import StudentGroup from './components/StudentGroup.vue'
 import SomeThing from './components/SomeThing.vue'
 import TabWindow from './components/TabWindow.vue'
+import MyTest from './components/MyTest.vue'
 </script>
 
 <style scoped>
