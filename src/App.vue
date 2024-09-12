@@ -1,22 +1,14 @@
 <template>
-  <HeaderComp/>
-  <VueCalc></VueCalc>
-  <TodosL/>
-  <StudentGroup/>
-  <SomeThing/>
-  <TabWindow/>
-  <MyTest/>
+  <RouterLink to="/vueProgect/">На главную</RouterLink>
+  <RouterLink to="/vueProgect/about">About</RouterLink>
+  <RouterLink to="/vueProgect/new">New</RouterLink>
+
+  <RouterView></RouterView>
 </template>
 
 <script setup lang="ts">
-import VueCalc from './components/DelegatedCalc.vue'
-import TodosL from './components/TodoList.vue'
-import HeaderComp from './components/HeaderComp.vue'
-import StudentGroup from './components/StudentGroup.vue'
-import SomeThing from './components/SomeThing.vue'
-import TabWindow from './components/TabWindow.vue'
-import MyTest from './components/MyTest.vue'
+
+
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

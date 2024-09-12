@@ -38,7 +38,7 @@ import { ref } from 'vue'
 
 const locQuestions = localStorage.questions ? JSON.parse(localStorage.questions) : [] as any
 
-export const questions = ref(locQuestions)
+const questions = ref(locQuestions)
 const error = ref('')
 const Canser = ref('')
 const Wanswer1 = ref('')

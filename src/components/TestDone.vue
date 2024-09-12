@@ -26,5 +26,5 @@
 </template>
 
 <script setup lang="ts">
-import { questions } from './MyTest.vue'
+// import { questions } from './MyTest.vue'
 </script>
