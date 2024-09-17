@@ -8,6 +8,7 @@
   <SomeThing />
   <TabWindow />
   <MyTest />
+  <TestDone/>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +19,7 @@ import StudentGroup from '#root/components/StudentGroup.vue'
 import SomeThing from '#root/components/SomeThing.vue'
 import TabWindow from '#root/components/TabWindow.vue'
 import MyTest from '#root/components/MyTest.vue'
+import TestDone from '#root/components/TestDone.vue'
 </script>
 
 <style scoped>

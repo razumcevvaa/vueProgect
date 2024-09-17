@@ -2,7 +2,7 @@
   <div class="box">
     <div class="num-que">
       <h3>1/1</h3>
-      <h3>{{ question }}</h3>
+      <!-- <h3>{{ question }}</h3> -->
     </div>
     <div class="variants-ans">
       <div>
@@ -27,4 +27,6 @@
 
 <script setup lang="ts">
 // import { questions } from './MyTest.vue'
+
+
 </script>
