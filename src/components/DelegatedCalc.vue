@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
 
 </script>
 
-<style>
+<style scoped>
 .box {
   border: 1px solid black;
   width: 210px;

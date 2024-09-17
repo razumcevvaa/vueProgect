@@ -68,7 +68,7 @@ const compArr = computed(() => {
 </script>
 
 
-<style>
+<style scoped>
 [data-check="1"] {
   text-decoration: line-through;
 }

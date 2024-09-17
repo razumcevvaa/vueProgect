@@ -29,7 +29,6 @@
       <p style="color:red" v-if="error">{{ error }}</p>
       <button type="submit">ADD</button>
     </form>
-    <button @click="startTest" class="startT">Start test</button>
   </div>
 </template>
 
@@ -46,10 +45,6 @@ const Wanswer2 = ref('')
 const Wanswer3 = ref('')
 const Wanswer4 = ref('')
 const newQuestion = ref('')
-
-const startTest = () =>{
-
-}
 
 const addQuestion = () => {
   const variants = [] as string[]
@@ -87,7 +82,7 @@ const addQuestion = () => {
 
 </script>
 
-<style>
+<style scoped>
 .box-qwe{
   width: 500px;
   text-align: justify;
