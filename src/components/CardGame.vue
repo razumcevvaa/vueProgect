@@ -1,15 +1,9 @@
 <template>
   <div class="wrap">
     <div class="game">
-      <div v-for="card in cards" :key="card.id" @click="onCardClicked($event, card)" class="card" :data-id="card.id">
-        <div class="inside">
-          <div class="front">
-            <img :src="card.img" />
-          </div>
-          <div class="back">
-            <img src="/imgBack.jpeg" />
-          </div>
-        </div>
+      <div v-for="card in cards" :key="card.id" @click="flip(card)" class="card">
+        <img :src="card.img" />
+        <img src="/imgBack.jpeg" />
       </div>
     </div>
   </div>
@@ -17,10 +11,27 @@
   
 <script setup lang="ts">
 import { ref } from 'vue'
-const onCardClicked = (event: any) => {
-  let cardId = event.target.getAttribute('data-id')
-  if (!event.cards.includes(cardId)) {
-    
+let flipped = ''
+
+const flip = (card) =>{
+  if (!flipped) {
+    flipped = card.img
+    card.isOpened = true
+  } else {
+    card.isOpened = true
+    if (flipped==card.img) {
+      flipped = ''
+      // vse verno nichego ne delaem
+      console.log('ok')
+    } else {
+      console.log('not ok')
+      flipped = ''
+      setTimeout(()=>{
+        for (let card of cards.value) {
+          if (card.isOpened) card.isOpened=!card.isOpened
+        }
+      },1000)
+    }
   }
 }
 
@@ -76,6 +87,7 @@ const cards = ref([
     id: 3,
   },
 ])
+
 </script>
 <style scoped>
 
@@ -108,4 +120,5 @@ img {
 .card .front{
   display: none;
 }
+
 </style>
