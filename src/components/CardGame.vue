@@ -25,6 +25,7 @@ const flip = (card:any) => {
       console.log('ok')
     } else {
       console.log('not ok')
+      card.classList.toggle("flipped")
       flipped = ''
       setTimeout(() => {
         for (let card of cards.value) {
@@ -129,6 +130,12 @@ img {
 }
 
 .back-face {
+  position: absolute;
+  border-radius: 5px;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: 1s;
+}
+.flipped {
   position: absolute;
   border-radius: 5px;
   transform: rotate3d(0, 1, 0, 90deg);
