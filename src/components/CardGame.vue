@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
     <div class="game">
-      <div v-for="card in cards" :key="card.id" @click="flip(card)" class="card">
-        <img :src="card.img" class="back-face" />
-        <img src="/imgBack.jpeg" class="front-face" />
+      <div v-for="card in cards" :key="card.id" @click="flip(card)" class="card" :class="card.isOpened ? 'flipped' : ''">
+        <img :src="card.img" class="front-face" />
+        <img src="/imgBack.jpeg" class="back-face" />
       </div>
     </div>
   </div>
@@ -11,18 +11,15 @@
   
 <script setup lang="ts">
 import { ref } from 'vue'
-let flipped = ''
+let flipped = {} as any
+
+let isActive = false
 
 const flip = (card:any) => {
-  if (!flipped) {
-    flipped = card.img
-    card.isOpened = true
-  } else {
-    card.isOpened = true
-    if (flipped == card.img) {
-      flipped = ''
-      // vse verno nichego ne delaem
-      console.log('ok')
+  if (!isActive) {
+    if (!flipped.img) {
+      card.isOpened = true
+      flipped = card
     } else {
       console.log('not ok')
       card.classList.toggle("flipped")
@@ -32,7 +29,35 @@ const flip = (card:any) => {
           if (card.isOpened) card.isOpened = !card.isOpened
         }
       }, 1000)
+      card.isOpened = true
+      if (flipped.img == card.img) {
+        card.matched = true
+        flipped.matched = true
+        flipped = {}
+        // vse vern nichego ne delaem
+        console.log('ok')
+      } else {
+        isActive = true
+        console.log('not ok')
+        flipped = ''
+        setTimeout(() => {
+          for (let card of cards.value) {
+            if (card.matched) continue
+            if (card.isOpened) card.isOpened = !card.isOpened
+          }
+          isActive = false
+        }, 3000)
+      }
     }
+  }
+}
+
+const shuffleArray = (array:any[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
 }
 
@@ -87,7 +112,9 @@ const cards = ref([
     isOpened: false,
     id: 10,
   },
-])
+] as any[])
+
+shuffleArray(cards.value)
 
 </script>
 <style scoped>
@@ -114,26 +141,34 @@ img {
 .card {
   position: relative;
 }
-.front-face {
-        transform: rotate3d(0, 1, 0, 0deg);
-        transition: 1s 1s;
-    }
-.back-face {
-        transform: rotate3d(0, 1, 0, 90deg);
-        transition: 1s ;
-    }
-.front-face {
-  /* position: absolute; */
-  border-radius: 5px;
+.flipped .front-face {
   transform: rotate3d(0, 1, 0, 0deg);
-  transition: 1s 1s;
+        transition: 1s 1s
+}
+.flipped .back-face {
+  transform: rotate3d(0, 1, 0, 90deg);
+        transition: 1s ;
+}
+.front-face {
+  top: 0;
+  left: 0;
+  width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    transform: rotate3d(0, 1, 0, 90deg);
+    transition: 1s ;
 }
 
 .back-face {
-  position: absolute;
-  border-radius: 5px;
-  transform: rotate3d(0, 1, 0, 90deg);
-  transition: 1s;
+  top: 0;
+  left: 0;
+  width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 5px;
+        transform: rotate3d(0, 1, 0, 0deg);
+        transition: 1s 1s;
 }
 .flipped {
   position: absolute;
