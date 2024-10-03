@@ -15,14 +15,12 @@ let flipped = {} as any
 
 let isActive = false
 
-const flip = (card:any) => {
+const flip = (card: any) => {
   if (!isActive) {
     if (!flipped.img) {
       card.isOpened = true
       flipped = card
     } else {
-      console.log('not ok')
-      card.classList.toggle("flipped")
       flipped = ''
       setTimeout(() => {
         for (let card of cards.value) {
@@ -35,10 +33,8 @@ const flip = (card:any) => {
         flipped.matched = true
         flipped = {}
         // vse vern nichego ne delaem
-        console.log('ok')
       } else {
         isActive = true
-        console.log('not ok')
         flipped = ''
         setTimeout(() => {
           for (let card of cards.value) {
@@ -52,9 +48,9 @@ const flip = (card:any) => {
   }
 }
 
-const shuffleArray = (array:any[]) => {
+const shuffleArray = (array: any[]) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i+1));
+    const j = Math.floor(Math.random() * (i + 1));
     const temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -122,10 +118,10 @@ shuffleArray(cards.value)
   /* display: flex;
   flex-wrap: wrap; */
   width: 1200px;
-    display: grid;
-    grid-template-columns: 250px 250px 250px 250px 250px;
-    grid-template-rows: 250px 250px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 250px 250px 250px 250px 250px;
+  grid-template-rows: 250px 250px;
+  gap: 20px;
 }
 
 .wrap {
@@ -141,39 +137,42 @@ img {
 .card {
   position: relative;
 }
+
 .flipped .front-face {
   transform: rotate3d(0, 1, 0, 0deg);
-        transition: 1s 1s
+  transition: 1s 1s
 }
+
 .flipped .back-face {
   transform: rotate3d(0, 1, 0, 90deg);
-        transition: 1s ;
+  transition: 1s;
 }
+
 .front-face {
   top: 0;
   left: 0;
   width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 5px;
-    transform: rotate3d(0, 1, 0, 90deg);
-    transition: 1s ;
+  height: 100%;
+  position: absolute;
+  border-radius: 5px;
+  transform: rotate3d(0, 1, 0, 90deg);
+  transition: 1s;
 }
 
 .back-face {
   top: 0;
   left: 0;
   width: 100%;
-        height: 100%;
-        position: absolute;
-        border-radius: 5px;
-        transform: rotate3d(0, 1, 0, 0deg);
-        transition: 1s 1s;
+  height: 100%;
+  position: absolute;
+  border-radius: 5px;
+  transform: rotate3d(0, 1, 0, 0deg);
+  transition: 1s 1s;
 }
+
 .flipped {
   position: absolute;
   border-radius: 5px;
   transform: rotate3d(0, 1, 0, 90deg);
   transition: 1s;
-}
-</style>
+}</style>
