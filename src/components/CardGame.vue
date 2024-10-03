@@ -21,12 +21,6 @@ const flip = (card: any) => {
       card.isOpened = true
       flipped = card
     } else {
-      flipped = ''
-      setTimeout(() => {
-        for (let card of cards.value) {
-          if (card.isOpened) card.isOpened = !card.isOpened
-        }
-      }, 1000)
       card.isOpened = true
       if (flipped.img == card.img) {
         card.matched = true
@@ -42,7 +36,7 @@ const flip = (card: any) => {
             if (card.isOpened) card.isOpened = !card.isOpened
           }
           isActive = false
-        }, 3000)
+        }, 2000)
       }
     }
   }
@@ -170,9 +164,5 @@ img {
   transition: 1s 1s;
 }
 
-.flipped {
-  position: absolute;
-  border-radius: 5px;
-  transform: rotate3d(0, 1, 0, 90deg);
-  transition: 1s;
-}</style>
+
+</style>
