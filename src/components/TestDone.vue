@@ -67,5 +67,4 @@ const next = () => {
   width: 500px;
 }
 
-.variants-ans div {}
 </style>

@@ -13,6 +13,8 @@
 import { ref } from 'vue'
 let flipped = {} as any
 
+const done = defineModel<boolean>()
+
 let isActive = false
 
 const flip = (card: any) => {
@@ -26,7 +28,20 @@ const flip = (card: any) => {
         card.matched = true
         flipped.matched = true
         flipped = {}
-        // vse vern nichego ne delaem
+        let isDone = true
+        for (let el of cards.value) {
+          if (el.matched) {
+            continue
+          } else {
+            isDone = false
+            break
+          }
+        }
+        if (isDone) {
+          setTimeout(() => {
+            done.value = true
+          }, 3000)
+        }
       } else {
         isActive = true
         flipped = ''
@@ -130,16 +145,17 @@ img {
 
 .card {
   position: relative;
+  cursor: pointer;
 }
 
 .flipped .front-face {
   transform: rotate3d(0, 1, 0, 0deg);
-  transition: 1s 1s
+  transition: .7s .7s
 }
 
 .flipped .back-face {
   transform: rotate3d(0, 1, 0, 90deg);
-  transition: 1s;
+  transition: .7s;
 }
 
 .front-face {
@@ -150,7 +166,7 @@ img {
   position: absolute;
   border-radius: 5px;
   transform: rotate3d(0, 1, 0, 90deg);
-  transition: 1s;
+  transition: .7s;
 }
 
 .back-face {
@@ -161,8 +177,6 @@ img {
   position: absolute;
   border-radius: 5px;
   transform: rotate3d(0, 1, 0, 0deg);
-  transition: 1s 1s;
+  transition: .7s .7s;
 }
-
-
 </style>
